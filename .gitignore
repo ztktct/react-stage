@@ -63,3 +63,5 @@ webpack-stats.json
 sessions
 
 # dist directory
+dist
+webpack-assets.json

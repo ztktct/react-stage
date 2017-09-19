@@ -1,6 +1,3 @@
 module.exports = {
-  cdn: {
-    host: '//assets.dianwoda.cn',
-    path: 'blink-dingtalk-oa'
-  }
+  cdn: '/' // 资源路径，可以设置CND地址
 }

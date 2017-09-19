@@ -14,10 +14,6 @@ module.exports = {
   alias: {
     components: `${path.resolve(__dirname, '..')}/src/components`,
     actions: `${path.resolve(__dirname, '..')}/src/actions`,
-    apis: `${path.resolve(__dirname, '..')}/src/apis`,
-    reducers: `${path.resolve(__dirname, '..')}/src/reducers`,
-    utils: `${path.resolve(__dirname, '..')}/src/utils`,
-    constants: `${path.resolve(__dirname, '..')}/src/constants`,
   },
   assets: {
     images: {

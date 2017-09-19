@@ -5,7 +5,6 @@ const CleanPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-const strip = require('strip-loader');
 
 const projectRootPath = path.resolve(__dirname, '../');
 const assetsPath = path.resolve(projectRootPath, './dist');
@@ -16,8 +15,6 @@ const pkg = require('../package.json');
 const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
 
-const AntTheme = require(path.resolve(__dirname, '../package.json'))['ant-theme'];
-
 module.exports = {
   devtool: 'source-map',
   context: path.resolve(__dirname, '..'),
@@ -26,39 +23,24 @@ module.exports = {
   },
   output: {
     path: assetsPath,
-    filename: 'js/[name]-[hash].js',
-    publicPath: `${config.cdn.host}${config.cdn.path}/${pkg.version}/`,
+    filename: 'js/[name]-[chunkhash].js',
+    publicPath: `${config.cdn}/${pkg.version}/`,
   },
   module: {
     loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, use: [strip.loader('debug'), 'babel-loader'] },
+      { test: /\.jsx?$/, exclude: /node_modules/, use: ['babel-loader'] },
       {
         test: /\.css$/,
-        loader: ExtractTextPlugin.extract({ fallback: 'style-loader', use: ['css-loader', 'postcss-loader'] }),
-      },
-      {
-        test: /\.less$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: [
-            'css-loader?importLoaders=2&sourceMap',
-            'postcss-loader',
-            {
-              loader: 'less-loader',
-              options: {
-                outputStyle: 'expanded',
-                sourceMap: true,
-                modifyVars: AntTheme,
-              },
-            },
-          ],
+          use: ['css-loader?importLoaders=2&sourceMap&minimize=true', 'postcss-loader']
         }),
       },
       {
         test: /\.scss$/,
         loader: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: ['css-loader?modules&importLoaders=2&sourceMap', 'postcss-loader', 'sass-loader'],
+          use: ['css-loader?importLoaders=2&sourceMap&minimize=true', 'postcss-loader', 'sass-loader'],
         }),
       },
       { test: /\.woff(\?v=\d+\.\d+\.\d+)?$/, loader: 'url-loader?limit=10000&mimetype=application/font-woff' },
@@ -74,13 +56,7 @@ module.exports = {
     extensions: ['.json', '.js', '.jsx'],
     alias: {
       container: path.resolve(__dirname, '..') + '/src/common/container',
-      components: path.resolve(__dirname, '..') + '/src/common/components',
-      apis: path.resolve(__dirname, '..') + '/src/common/apis',
-      actions: path.resolve(__dirname, '..') + '/src/common/actions',
-      reducers: path.resolve(__dirname, '..') + '/src/common/reducers',
-      utils: path.resolve(__dirname, '..') + '/src/common/utils',
-      constants: path.resolve(__dirname, '..') + '/src/common/constants',
-      images: path.resolve(__dirname, '..') + '/src/common/images',
+      components: path.resolve(__dirname, '..') + '/src/common/components'
     },
   },
   plugins: [
@@ -93,12 +69,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: '"production"',
-      },
-
-      IS_CLIENT: true,
-      IS_SERVER: false,
-      IS_DEVELOPMENT: false,
-      ENABLE_DEVTOOLS: false,
+      }
     }),
     new HtmlWebpackPlugin({
       filename: path.resolve(__dirname, '../dist/index.html'),
@@ -130,11 +101,6 @@ module.exports = {
       compress: {
         warnings: false,
       },
-    }),
-    new OptimizeCSSPlugin({
-      cssProcessorOptions: {
-        safe: true
-      }
     }),
     webpackIsomorphicToolsPlugin,
   ],

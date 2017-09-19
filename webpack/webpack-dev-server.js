@@ -1,20 +1,14 @@
 const Express = require('express')
 const webpack = require('webpack')
-const Dashboard = require('webpack-dashboard')
-const DashboardPlugin = require('webpack-dashboard/plugin')
 const opn = require('opn')
 
 const config = require('../config/development')
 const webpackConfig = require('./dev.config')
 
 const compiler = webpack(webpackConfig)
-if (process.env.ENABLE_DASHBOARD) {
-  const dashboard = new Dashboard()
-  compiler.apply(new DashboardPlugin(dashboard.setData))
-}
 
 const host = config.host || 'localhost'
-const port = (Number(config.port) + 1) || 3001
+const port = Number(config.port) || 8000
 const uri = `http://${host}:${port}`
 
 const serverOptions = {

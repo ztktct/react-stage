@@ -1,5 +1,14 @@
 {
-	"presets": ["es2015", "stage-2", "react"],
+	"presets": ["react", ["env" , {
+		"target": {
+			"browsers": [
+				"ie >= 9",
+				"Android >= 4.3",
+        "iOS >= 6.0",
+        ">1%"
+			]
+		}
+	}]],
 	"plugins": [
 		"transform-class-properties",
 		"transform-decorators-legacy",
