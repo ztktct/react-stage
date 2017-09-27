@@ -40,6 +40,9 @@ app.use(devMiddleware)
 
 app.use(hotMiddleware)
 
+// 代理静态资源
+app.use(Express.static(require('path').join(__dirname,'../dist')));
+
 let _resolve
 /* eslint-disable */
 new Promise((resolve) => {

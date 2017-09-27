@@ -1,17 +1,19 @@
 {
-	"presets": ["react", ["env" , {
-		"target": {
+	"presets": [["env" , {
+		"modules": false,
+		"useBuiltIns": "entry",
+		"targets": {
+			"chrome": 24,
 			"browsers": [
 				"ie >= 9",
 				"Android >= 4.3",
         "iOS >= 6.0",
-        ">1%"
+        ">0.1%"
 			]
 		}
-	}]],
+	}], "react"],
 	"plugins": [
-		"transform-class-properties",
-		"transform-decorators-legacy",
-		"react-hot-loader/babel"
+		"react-hot-loader/babel",
+		"syntax-dynamic-import"
 	]
 }

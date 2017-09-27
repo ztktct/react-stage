@@ -24,7 +24,7 @@ module.exports = {
   output: {
     path: assetsPath,
     filename: 'js/[name]-[chunkhash].js',
-    publicPath: `${config.cdn}/${pkg.version}/`,
+    publicPath: `${config.cdn}/${pkg.version}/`, // 可自行修改，类似于这样的路径：//0.1.0/js/main-bfc0c1f45d64de42d017.js
   },
   module: {
     loaders: [
@@ -86,7 +86,7 @@ module.exports = {
       chunksSortMode: 'dependency'
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
+      name: 'common',
       minChunks: function(module) {
         // this assumes your vendor imports exist in the node_modules directory
         return module.context && module.context.indexOf('node_modules') !== -1;
@@ -101,6 +101,7 @@ module.exports = {
       compress: {
         warnings: false,
       },
+      sourceMap: true
     }),
     webpackIsomorphicToolsPlugin,
   ],

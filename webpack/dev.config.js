@@ -37,7 +37,7 @@ module.exports = {
   output: {
     path: assetsPath,
     filename: '[name]-[hash].js',
-    publicPath: 'http://' + host + ':' + port + '/',
+    publicPath: '/',
   },
   module: {
     rules: [
@@ -69,6 +69,10 @@ module.exports = {
     },
   },
   plugins: [
+    new webpack.DllReferencePlugin({
+      context: __dirname,
+      manifest: require('../dist/js/vendor-manifest.json')
+    }),
     // hot reload
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
@@ -79,7 +83,7 @@ module.exports = {
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
+      name: 'common',
       minChunks: function (module) {
         // this assumes your vendor imports exist in the node_modules directory
         return module.context && module.context.indexOf('node_modules') !== -1;
@@ -92,8 +96,9 @@ module.exports = {
     webpackIsomorphicToolsPlugin.development(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: 'index.html',
-      inject: true
+      template: './index.html', // 指定模板文件路径
+      inject: true,
+      env: 'development'  // 插件支持自定义参数，此处是为了在development环境下加载vendor.dll.js文件，生产环境无需加载dll.js文件
     }),
     new FriendlyErrorsPlugin()
   ],

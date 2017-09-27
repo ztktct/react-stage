@@ -13,7 +13,6 @@ module.exports = {
   // debug: true,
   alias: {
     components: `${path.resolve(__dirname, '..')}/src/components`,
-    actions: `${path.resolve(__dirname, '..')}/src/actions`,
   },
   assets: {
     images: {
