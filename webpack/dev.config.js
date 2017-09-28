@@ -14,16 +14,6 @@ const port = +process.env.PORT || 8000;
 const WebpackIsomorphicToolsPlugin = require('webpack-isomorphic-tools/plugin');
 const webpackIsomorphicToolsPlugin = new WebpackIsomorphicToolsPlugin(require('./webpack-isomorphic-tools'));
 
-const babelrc = fs.readFileSync('./.babelrc');
-let babelrcObject = {};
-
-try {
-  babelrcObject = JSON.parse(babelrc);
-} catch (err) {
-  console.error('==>     ERROR: Error parsing your .babelrc.');
-  console.error(err);
-}
-
 module.exports = {
   devtool: 'inline-source-map',
   context: path.resolve(__dirname, '..'),
@@ -31,7 +21,7 @@ module.exports = {
     main: [
       'react-hot-loader/patch',
       'webpack-hot-middleware/client?path=http://' + host + ':' + port + '/__webpack_hmr',
-      './src/index.js',
+      './src/index.tsx',
     ],
   },
   output: {
@@ -41,7 +31,8 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.jsx?$/, exclude: /node_modules/, use: ['babel-loader'] },
+      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+      { test: /\.(ts|js)x?$/, exclude: /node_modules/, use: ['awesome-typescript-loader'] },
       { test: /\.css$/, use: ['style-loader', 'css-loader', 'postcss-loader'] },
       {
         test: /\.scss$/,
@@ -62,7 +53,7 @@ module.exports = {
   },
   resolve: {
     modules: [path.resolve(__dirname, '../src'), 'node_modules'],
-    extensions: ['.json', '.js', '.jsx'],
+    extensions: ['.json', '.ts', '.tsx', '.js', '.jsx'],
     alias: {
       container: path.resolve(__dirname, '../src/container'),
       components: path.resolve(__dirname, '../src/components'),
@@ -83,7 +74,7 @@ module.exports = {
       }
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'common',
+      name: 'vendor',
       minChunks: function (module) {
         // this assumes your vendor imports exist in the node_modules directory
         return module.context && module.context.indexOf('node_modules') !== -1;
@@ -96,7 +87,7 @@ module.exports = {
     webpackIsomorphicToolsPlugin.development(),
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: './index.html', // 指定模板文件路径
+      template: './index.html',
       inject: true,
       env: 'development'  // 插件支持自定义参数，此处是为了在development环境下加载vendor.dll.js文件，生产环境无需加载dll.js文件
     }),

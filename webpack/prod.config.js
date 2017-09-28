@@ -19,16 +19,17 @@ module.exports = {
   devtool: 'source-map',
   context: path.resolve(__dirname, '..'),
   entry: {
-    main: ['./src/index.js'],
+    main: ['./src/index.tsx'],
   },
   output: {
     path: assetsPath,
     filename: 'js/[name]-[chunkhash].js',
-    publicPath: '/' // `${config.cdn}/${pkg.version}/`, // 可自行修改，类似于这样的路径：//0.1.0/js/main-bfc0c1f45d64de42d017.js
+    publicPath: '/',
   },
   module: {
     loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, use: ['babel-loader'] },
+      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+      { test: /\.(ts|js)x?$/, exclude: /node_modules/, use: ['awesome-typescript-loader'] },
       {
         test: /\.css$/,
         loader: ExtractTextPlugin.extract({
@@ -53,7 +54,7 @@ module.exports = {
   },
   resolve: {
     modules: [path.resolve(__dirname, '../src'), 'node_modules'],
-    extensions: ['.json', '.js', '.jsx'],
+    extensions: ['.json', '.js', '.jsx', '.ts', '.tsx'],
     alias: {
       container: path.resolve(__dirname, '..') + '/src/common/container',
       components: path.resolve(__dirname, '..') + '/src/common/components'
@@ -86,7 +87,7 @@ module.exports = {
       chunksSortMode: 'dependency'
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'common',
+      name: 'vendor',
       minChunks: function(module) {
         // this assumes your vendor imports exist in the node_modules directory
         return module.context && module.context.indexOf('node_modules') !== -1;
