@@ -1,0 +1,19 @@
+{
+	"presets": [["env" , {
+		"modules": false,
+		"useBuiltIns": "entry",
+		"targets": {
+			"chrome": 24,
+			"browsers": [
+				"ie >= 9",
+				"Android >= 4.3",
+        "iOS >= 6.0",
+        ">0.1%"
+			]
+		}
+	}], "react"],
+	"plugins": [
+		"react-hot-loader/babel",
+		"syntax-dynamic-import"
+	]
+}

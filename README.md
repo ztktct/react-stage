@@ -1,24 +1,22 @@
 # React
 
-## Why not React v16?
-`@types/react` & `@types/react-dom` now is not available for V16, please waiting....
-
 ## 信息
-`React` + `Typescript`, 中规中矩的单页面项目脚手架
+`master` 分支提供基础脚手架，标配`react` + `webpack` + `babel`，中规中矩的单页面项目脚手架
+其他类型请查看其他分支对应`README`文件
 
 ## 技术栈
-* React ^15.6.1
-* React-dom ^15.6.1
+* React ^16.0.0
+* React-dom ^16.0.0
 * React-router-dom ^4.2.2
 * webpack ^3.5.5
-* typescript ^2.5.2
+* babel ^6.26.0
 
-## Command
+## 命令
 ```bash
  $ npm run start # 启动项目
  $ npm run build # 编译打包
- $ npm run lint # 检测代码语法规范
 ```
+
 ## 项目结构
 ```
 .
@@ -37,12 +35,11 @@
 
 ## 特性
 - [x] 支持ES2015+
-- [x] 支持Typescript语法
 - [x] 支持SASS预处理器
 - [x] 支持部分CSS3+新特性
 - [x] 支持组件级热更新
 - [x] 支持文件hash，有效解决缓存问题
-- [x] TSlint代码规范检测
+- [x] ESlint代码规范检测
 - [x] 分离公共依赖代码与业务代码
 - [x] 代码拆分，支持页面级加载
 
