@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-import Avater from '../../images/Avater.jpg';
+import Avater from '../../static/Avater.jpg';
 
 export default class extends Component {
   render() {

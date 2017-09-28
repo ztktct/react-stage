@@ -6,7 +6,6 @@
   "scripts": {
     "start": "better-npm-run watch-client",
     "build": "better-npm-run build",
-    "dll": "better-npm-run dll",
     "lint": "eslint ./src/**/*.js ./src/**/*.jsx",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

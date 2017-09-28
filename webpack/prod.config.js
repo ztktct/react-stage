@@ -24,7 +24,7 @@ module.exports = {
   output: {
     path: assetsPath,
     filename: 'js/[name]-[chunkhash].js',
-    publicPath: `${config.cdn}/${pkg.version}/`, // 可自行修改，类似于这样的路径：//0.1.0/js/main-bfc0c1f45d64de42d017.js
+    publicPath: '/' // `${config.cdn}/${pkg.version}/`, // 可自行修改，类似于这样的路径：//0.1.0/js/main-bfc0c1f45d64de42d017.js
   },
   module: {
     loaders: [
