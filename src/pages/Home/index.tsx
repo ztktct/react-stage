@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Link } from 'react-router-dom';
 
-import Logo from '../../static/logo.png';
+const Logo = require('../../static/logo.png');
 
-export default class extends Component {
+export default class extends React.Component {
   render() {
     return (<Link to="/other">
       <img src={Logo} alt="点我达" />
