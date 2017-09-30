@@ -15,12 +15,12 @@
 ```bash
  $ npm run start # 启动项目
  $ npm run build # 编译打包
+ $ npm run analyse # 分析包
 ```
 
 ## 项目结构
 ```
 .
-├── config                   # 项目配置文件
 ├── dist                     # 打包后的代码
 ├── webpack                  # webpack配置文件
 ├── src                      # 程序源文件

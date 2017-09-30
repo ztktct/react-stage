@@ -6,9 +6,9 @@
 			"chrome": 24,
 			"browsers": [
 				"ie >= 9",
-				"Android >= 4.3",
-        "iOS >= 6.0",
-        ">0.1%"
+				"Android >= 4.1",
+        "iOS >= 7.0",
+        ">1%"
 			]
 		}
 	}], "react"],

@@ -2,13 +2,12 @@ const Express = require('express')
 const webpack = require('webpack')
 const opn = require('opn')
 
-const config = require('../config/development')
-const webpackConfig = require('./dev.config')
+const webpackConfig = require('./webpack.dev.conf')
 
 const compiler = webpack(webpackConfig)
 
-const host = config.host || 'localhost'
-const port = Number(config.port) || 8000
+const host = 'localhost'
+const port = 8000
 const uri = `http://${host}:${port}`
 
 const serverOptions = {
