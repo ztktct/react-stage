@@ -18,6 +18,7 @@
  $ npm run start # 启动项目
  $ npm run build # 编译打包
  $ npm run lint # 检测代码语法规范
+ $ npm run analyse # 分析包
 ```
 ## 项目结构
 ```
