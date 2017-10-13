@@ -12,7 +12,8 @@
     "noUnusedLocals": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
-    "typeRoots": ["./src/types"],
+    "baseUrl": "types",
+    "typeRoots": ["./src/types", "types"],
     "lib": ["es6", "dom"]
   },
   "exclude": [

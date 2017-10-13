@@ -1,14 +1,11 @@
 # React
 
-## Why not React v16?
-`@types/react` & `@types/react-dom` now is not available for V16, please waiting....
-
 ## 信息
 `React` + `Typescript`, 中规中矩的单页面项目脚手架
 
 ## 技术栈
-* React ^15.6.1
-* React-dom ^15.6.1
+* React ^16.0.0
+* React-dom ^16.0.0
 * React-router-dom ^4.2.2
 * webpack ^3.5.5
 * typescript ^2.5.2
