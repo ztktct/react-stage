@@ -27,8 +27,8 @@ module.exports = {
     modules: [path.resolve(__dirname, '../src'), 'node_modules'],
     extensions: ['.json', '.ts', '.tsx', '.js', '.jsx'],
     alias: {
-      container: path.resolve(__dirname, '..') + '/src/common/container',
-      components: path.resolve(__dirname, '..') + '/src/common/components'
+      container: path.resolve(__dirname, '../src/container'),
+      components: path.resolve(__dirname, '../src/components')
     },
   },
   plugins: [
