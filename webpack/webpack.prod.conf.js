@@ -41,7 +41,20 @@ module.exports = merge(baseWebpackConfig, {
           fallback: 'style-loader',
           use: ['css-loader?minimize=true', 'postcss-loader', 'sass-loader'],
         }),
-      }
+      },
+      { 
+        test: webpackIsomorphicToolsPlugin.regular_expression('images'),
+        use: [
+          'url-loader?limit=10240',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              // 可以配置一些图片压缩设置
+              // https://github.com/tcoopman/image-webpack-loader
+            }
+          }
+        ]
+      },
     ],
   },
   plugins: [

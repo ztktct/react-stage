@@ -41,7 +41,11 @@ module.exports = merge(baseWebpackConfig, {
           'postcss-loader',
           'sass-loader',
         ],
-      }
+      },
+      { 
+        test: webpackIsomorphicToolsPlugin.regular_expression('images'),
+        use: [ 'url-loader?limit=10240' ]
+      },
     ],
   },
   plugins: [
